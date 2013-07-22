@@ -123,8 +123,6 @@ static switch_status_t switch_bcg729_encode(switch_codec_t *codec,
 	return SWITCH_STATUS_SUCCESS;
 }
 
-// For zero data
-// static int16_t lost_frame[80] = { 0 };
 static switch_status_t switch_bcg729_decode(switch_codec_t *codec,
 										    switch_codec_t *other_codec,
 										    void *encoded_data,
@@ -180,9 +178,6 @@ SWITCH_MODULE_LOAD_FUNCTION(mod_bcg729_load)
 {
 	switch_codec_interface_t *codec_interface;
 	int mpf = 10000, spf = 80, bpf = 160, ebpf = 10, count;
-
-	// Init IPP library
-	// g729_init_lib();
 
 	/* connect my internal structure to the blank pointer passed to me */
 	*module_interface = switch_loadable_module_create_module_interface(pool, modname);
