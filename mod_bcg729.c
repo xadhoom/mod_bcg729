@@ -25,6 +25,8 @@
  * 
  * Anthony Minessale II <anthmct@yahoo.com>
  * Michael Jerris <mike@jerris.com>
+ * <mkrivushin@yandex.ru> for fsg729 ( which used IPP media libraries )
+ * Matteo Brancaleoni <mbrancaleoni@gmail.com>
  *
  * The bcg729 codec itself is not distributed with this module.
  *
