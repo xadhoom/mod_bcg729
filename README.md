@@ -17,7 +17,7 @@ the owner of that patent and request their permission before executing the code.
 
 You can get a licensed, faster and supported G.729 codec by purchasing licenses
 directly from FreeSWITCH guys http://www.freeswitch.org/node/235 .
-This will have the side effect to support the FreeSWICTH project ;)
+This will have the side effect to support the FreeSWITCH project ;)
 
 Installation
 ============
@@ -25,9 +25,9 @@ You need to have git on your build machine and internet access, since
 the Makefile will try to checkout bcg729 sources and build them.
 
 Edit Makefile and edit FS_INCLUDES, FS_MODULES vars to point where
-your FreeSWICTH includes are and where you want to install the module.
+your FreeSWITCH includes are and where you want to install the module.
 
 After, just type make and, if build completes without errors, make install .
 
 Edit autoload_configs/modules.conf.xml , comment out mod_g729 and add mod_bcg729 .
-Now restart your FreeSWICTH and you're done.
+Now restart your FreeSWITCH and you're done.
