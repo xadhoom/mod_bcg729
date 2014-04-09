@@ -57,9 +57,12 @@ static switch_status_t switch_bcg729_init(switch_codec_t *codec, switch_codec_fl
 	if (!(encoding || decoding) || (!(context = switch_core_alloc(codec->memory_pool, sizeof(struct bcg729_context))))) {
 		return SWITCH_STATUS_FALSE;
 	} else {
+        /*
 		if (codec->fmtp_in) {
 			codec->fmtp_out = switch_core_strdup(codec->memory_pool, codec->fmtp_in);
 		}
+        */
+		codec->fmtp_out = switch_core_strdup(codec->memory_pool, "annexb=no");
 
 		if (encoding) {
             context->encoder_object = initBcg729EncoderChannel();
@@ -187,7 +190,7 @@ SWITCH_MODULE_LOAD_FUNCTION(mod_bcg729_load)
 	    switch_core_codec_add_implementation(pool, codec_interface, SWITCH_CODEC_TYPE_AUDIO, 
                                                 18, /* the IANA code number */
                                                 "G729", /* the IANA code name */
-                                                NULL, /* default fmtp to send (can be overridden by the init function) */
+                                                "annexb=no", /* default fmtp to send (can be overridden by the init function) */
                                                 8000, /* samples transferred per second */
                                                 8000, /* actual samples transferred per second */
                                                 8000, /* bits transferred per second */
