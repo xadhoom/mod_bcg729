@@ -3,7 +3,7 @@ mod_bcg729
 
 FreeSWITCH G.729A module using the opensource bcg729 implementation by Belledonne Communications.
 
-Simple G.729A codec for FreeSWITCH using the Belledone Communications G.729A GPLv2 implementation.
+Simple G.729A codec for FreeSWITCH using the Belledonne Communications G.729A GPLv2 implementation.
 Please see http://www.linphone.org/eng/documentation/dev/bcg729.html for further informations.
 
 This code is a modified version of fsg729 ( https://code.google.com/p/fsg729/ ) which
