@@ -1,7 +1,4 @@
 /* 
- * FreeSWITCH Modular Media Switching Software Library / Soft-Switch Application
- * Copyright (C) 2005/2006, Anthony Minessale II <anthmct@yahoo.com>
- *
  * Version: MPL 1.1
  *
  * The contents of this file are subject to the Mozilla Public License Version
@@ -16,15 +13,11 @@
  *
  * The Original Code is FreeSWITCH Modular Media Switching Software Library / Soft-Switch Application
  *
- * The Initial Developer of the Original Code is
- * Anthony Minessale II <anthmct@yahoo.com>
  * Portions created by the Initial Developer are Copyright (C)
  * the Initial Developer. All Rights Reserved.
  *
  * Contributor(s):
  * 
- * Anthony Minessale II <anthmct@yahoo.com>
- * Michael Jerris <mike@jerris.com>
  * <mkrivushin@yandex.ru> for fsg729 ( which used IPP media libraries )
  * Matteo Brancaleoni <mbrancaleoni@gmail.com>
  *
