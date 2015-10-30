@@ -19,6 +19,4 @@ override_dh_auto_install:
 override_dh_auto_clean:
 	rm -f mod_bcg729.o
 	rm -f mod_bcg729.so
-	rm -rf debian/tmp
-	rm -rf debian/freeswitch-mod-bcg729
 
