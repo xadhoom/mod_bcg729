@@ -1,0 +1,22 @@
+#!/usr/bin/make -f
+DH_VERBOSE = 1
+export ADD_CFLAGS=-fomit-frame-pointer -fno-exceptions -Wall -std=c99 -pedantic
+export ADD_LIBS=-lm -lbcg729
+# main packaging script based on dh7 syntax
+%:
+	dh $@ 
+
+
+.stamp-build:
+	fsxs compile --add-cflags="$(ADD_CFLAGS)" mod_bcg729.c 
+	fsxs link --add-libs="$(ADD_LIBS)" mod_bcg729.so mod_bcg729.o
+
+override_dh_auto_build: .stamp-build
+
+override_dh_auto_install:
+	fsxs install --destdir="debian/tmp/" mod_bcg729.so
+
+override_dh_auto_clean:
+	rm -f mod_bcg729.o
+	rm -f mod_bcg729.so
+

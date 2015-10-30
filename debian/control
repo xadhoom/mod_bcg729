@@ -1,0 +1,21 @@
+Source: freeswitch-mod-bcg729
+Section: comm
+Priority: optional
+Maintainer: Boris Manojlovic <boris@steki.net>
+Build-Depends: debhelper (>= 9),
+# bcg729 strange requirement really :) 
+ libbcg729-dev,
+# freeswitch development files
+ libfreeswitch-dev
+Standards-Version: 3.9.5
+Homepage: https://github.com/xadhoom/mod_bcg729
+Vcs-Git: https://github.com/xadhoom/mod_bcg729.git
+Vcs-Browser: https://github.com/xadhoom/mod_bcg729
+
+Package: freeswitch-mod-bcg729
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends},
+ freeswitch (>= 1.4.23),
+ libbcg729-0
+Description: Freeswitch G729 module
+ mod_bcg729 is G729 codec package
