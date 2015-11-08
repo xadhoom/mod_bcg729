@@ -179,7 +179,7 @@ SWITCH_MODULE_LOAD_FUNCTION(mod_bcg729_load)
 	*module_interface = switch_loadable_module_create_module_interface(pool, modname);
 
 	SWITCH_ADD_CODEC(codec_interface, "G.729");
-	for (count = 12; count > 0; count--) {
+	for (count = 6; count > 0; count--) {
 	    switch_core_codec_add_implementation(pool, codec_interface, SWITCH_CODEC_TYPE_AUDIO, 
                                                 18, /* the IANA code number */
                                                 "G729", /* the IANA code name */
@@ -187,12 +187,12 @@ SWITCH_MODULE_LOAD_FUNCTION(mod_bcg729_load)
                                                 8000, /* samples transferred per second */
                                                 8000, /* actual samples transferred per second */
                                                 8000, /* bits transferred per second */
-											    mpf * count, /* number of microseconds per frame */
+                                                mpf * count, /* number of microseconds per frame */
                                                 spf * count, /* number of samples per frame */
                                                 bpf * count, /* number of bytes per frame decompressed */
                                                 ebpf * count, /* number of bytes per frame compressed */
                                                 1, /* number of channels represented */
-                                                count * 10, /* number of frames per network packet */
+                                                count, /* number of frames per network packet */
 											    switch_bcg729_init, /* function to initialize a codec handle using this implementation */
                                                 switch_bcg729_encode, /* function to encode raw data into encoded data */
                                                 switch_bcg729_decode, /* function to decode encoded data into raw data */
