@@ -5,6 +5,7 @@ FS_MODULES=/opt/freeswitch/mod
 ################################
 
 ### END OF CUSTOMIZATION ###
+SHELL := /bin/bash
 PROC?=$(shell uname -m)
 
 CC=gcc 
