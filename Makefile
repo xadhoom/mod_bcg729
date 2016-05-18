@@ -1,10 +1,11 @@
 ################################
-### FreeSwitch headers files ###
-FS_INCLUDES=/opt/freeswitch/include
-FS_MODULES=/opt/freeswitch/mod
+### FreeSwitch headers files found in libfreeswitch-dev ###
+FS_INCLUDES=/usr/include/freeswitch
+FS_MODULES=/usr/lib/freeswitch/mod
 ################################
 
 ### END OF CUSTOMIZATION ###
+SHELL := /bin/bash
 PROC?=$(shell uname -m)
 
 CC=gcc 
