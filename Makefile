@@ -8,7 +8,7 @@ FS_MODULES=/usr/lib/freeswitch/mod
 SHELL := /bin/bash
 PROC?=$(shell uname -m)
 
-CC=gcc 
+CC=gcc
 CFLAGS=-fPIC -O3 -fomit-frame-pointer -fno-exceptions -Wall -std=c99 -pedantic
 ifeq (${PROC},x86_64)
 	CFLAGS+=-m64 -mtune=generic
@@ -17,9 +17,9 @@ else
 endif
 
 INCLUDES=-I/usr/include -Ibcg729/include -I$(FS_INCLUDES)
-LDFLAGS=-lm -Wl,-static -Lbcg729/src/.libs -lbcg729 -Wl,-Bdynamic 
+LDFLAGS=-lm -Wl,-static -Lbcg729/src/.libs -lbcg729 -Wl,-Bdynamic
 
-all : mod_bcg729.o
+all: mod_bcg729.o
 	$(CC) $(CFLAGS) $(INCLUDES) -shared -Xlinker -x -o mod_bcg729.so mod_bcg729.o $(LDFLAGS)
 
 mod_bcg729.o: bcg729 mod_bcg729.c
@@ -31,8 +31,8 @@ clone_bcg729:
 	fi
 
 bcg729: clone_bcg729
-	cd bcg729 && sh autogen.sh && CFLAGS=-fPIC ./configure && make && cd ..
-	
+	cd bcg729 && sed -i -e '/PKG_CHECK_MODULES(\(ORTP\|MEDIASTREAMER\)/d' configure.ac && sh autogen.sh && CFLAGS=-fPIC ./configure && make && cd ..
+
 clean:
 	rm -f *.o *.so *.a *.la; cd bcg729 && make clean; cd ..
 
@@ -40,4 +40,4 @@ distclean: clean
 	rm -fR bcg729
 
 install: all
-	/usr/bin/install -c mod_bcg729.so $(INSTALL_PREFIX)/$(FS_MODULES)/mod_bcg729.so
+	/usr/bin/install -m 644 -c mod_bcg729.so $(INSTALL_PREFIX)/$(FS_MODULES)/mod_bcg729.so
