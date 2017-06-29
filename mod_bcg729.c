@@ -58,7 +58,7 @@ static switch_status_t switch_bcg729_init(switch_codec_t *codec, switch_codec_fl
 		codec->fmtp_out = switch_core_strdup(codec->memory_pool, "annexb=no");
 
 		if (encoding) {
-            context->encoder_object = initBcg729EncoderChannel();
+            context->encoder_object = initBcg729EncoderChannel(0);
 		}
 
 		if (decoding) {
@@ -103,10 +103,11 @@ static switch_status_t switch_bcg729_encode(switch_codec_t *codec,
 		int loops = (int) decoded_data_len / 160;
 
 		for (x = 0; x < loops && new_len < *encoded_data_len; x++) {
-            bcg729Encoder(context->encoder_object, ddp, edp);
-			edp += 10;
-			ddp += 80;
-			new_len += 10;
+			uint8_t frameSize;
+            bcg729Encoder(context->encoder_object, ddp, edp, &frameSize);
+			edp += frameSize;
+			ddp += frameSize * 8;
+			new_len += frameSize;
 		}
 
 		if (new_len <= *encoded_data_len) {
@@ -141,7 +142,7 @@ static switch_status_t switch_bcg729_decode(switch_codec_t *codec,
     int16_t *ddp = decoded_data;
 
     if (encoded_data_len == 0) {  /* Native PLC interpolation */
-        bcg729Decoder(context->decoder_object, NULL, 1, ddp);
+        bcg729Decoder(context->decoder_object, NULL, 0, 1, 0, 0, ddp);
 	    ddp += 80; 
         decoded_data_len = (uint32_t *) 160;
 	    switch_log_printf(SWITCH_CHANNEL_LOG, SWITCH_LOG_ERROR, "g729 zero length frame\n");
@@ -149,12 +150,10 @@ static switch_status_t switch_bcg729_decode(switch_codec_t *codec,
     }
 
     for(x = 0; x < encoded_data_len && new_len < *decoded_data_len; x += framesize) {
-        if(encoded_data_len - x < 8)
-            framesize = 2;  /* SID */
-        else
-            framesize = 10; /* regular 729a frame */
+		uint8_t isSID = (encoded_data_len - x < 8) ? 1 : 0;
+        framesize = (isSID==1) ? 2 : 10;
 
-        bcg729Decoder(context->decoder_object, edp, 0, ddp);
+        bcg729Decoder(context->decoder_object, edp, encoded_data_len, 0, isSID, 0, ddp);
 	    ddp += 80;
 	    edp += framesize;
 	    new_len += 160;
