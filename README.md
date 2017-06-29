@@ -6,16 +6,12 @@ FreeSWITCH G.729A module using the opensource bcg729 implementation by Belledonn
 Simple G.729A codec for FreeSWITCH using the Belledonne Communications G.729A GPLv2 implementation.
 Please see http://www.linphone.org/eng/documentation/dev/bcg729.html for further informations.
 
-This code is a modified version of fsg729 ( https://code.google.com/p/fsg729/ ) which
-uses the Intel IPP libraries, modified to use a different code and get rid of Intel stuff.
+The module is a modified version of fsg729 ( https://code.google.com/p/fsg729/ ) which
+uses the Intel IPP libraries, updated to use a different codec implementation and get rid of Intel stuff.
 
-To use G.729 or G.723.1 you may need to pay a royalty fee.
-Please see http://www.sipro.com for details.
-Please note that this code is available for you to download for education purposes 
-only and if a patent exists in your country for G.729 then you should contact 
-the owner of that patent and request their permission before executing the code.
+As of Jan 1 2017, G.729 is a royalty free codec: http://www.sipro.com/G729.html
 
-You can get a licensed, faster and supported G.729A codec by purchasing licenses
+You can get a faster and supported G.729A codec by purchasing licenses
 directly from FreeSWITCH guys http://www.freeswitch.org .
 This will have the side effect to support the FreeSWITCH project ;)
 
