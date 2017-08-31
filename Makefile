@@ -29,7 +29,7 @@ clone_bcg729:
 	if [ ! -d bcg729 ]; then \
 		git clone git://git.linphone.org/bcg729.git; \
 	fi
-	pushd bcg729 ; git checkout 1.0.3; popd;
+	pushd bcg729; git fetch; git checkout 1.0.3; popd;
 
 bcg729: clone_bcg729
 	cd bcg729 && sh autogen.sh && CFLAGS=-fPIC ./configure && make && cd ..
