@@ -13,7 +13,7 @@ CFLAGS=-fPIC -O3 -fomit-frame-pointer -fno-exceptions -Wall -std=c99 -pedantic
 MODEL=$(cat /proc/device-tree/model)
 ifeq (${PROC},x86_64)
 	CFLAGS+=-m64 -mtune=generic
-elif [[ $MODEL == *"Raspberry Pi"* ]]
+else ifeq [[ $MODEL == *"Raspberry Pi"* ]]
 	-march=armv7
 else
 	CFLAGS+=-m32 -march=i686
