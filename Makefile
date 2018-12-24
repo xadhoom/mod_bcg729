@@ -21,7 +21,7 @@ mod_bcg729.o: bcg729 mod_bcg729.c
 
 clone_bcg729:
 	if [ ! -d bcg729 ]; then \
-		git clone git://git.linphone.org/bcg729.git; \
+		git clone https://github.com/BelledonneCommunications/bcg729.git; \
 	fi
 	pushd bcg729; git fetch; git checkout 1.0.4; popd;
 
