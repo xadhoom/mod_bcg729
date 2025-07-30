@@ -9,13 +9,13 @@ SHELL := /bin/bash
 PROC?=$(shell uname -m)
 CMAKE := cmake
 
-CFLAGS=-fPIC -O3 -fomit-frame-pointer -fno-exceptions -Wall -std=c99 -pedantic
+CFLAGS+=-fPIC -O3 -fomit-frame-pointer -fno-exceptions -Wall -std=c99 -pedantic
 
 INCLUDES=-I/usr/include -Ibcg729/include -I$(FS_INCLUDES)
-LDFLAGS=-lm -Wl,-static -Lbcg729/src -lbcg729 -Wl,-Bdynamic
+MOD_LDFLAGS=-lm -Wl,-static -Lbcg729/src -lbcg729 -Wl,-Bdynamic
 
 all : mod_bcg729.o
-	$(CC) $(CFLAGS) $(INCLUDES) -shared -Xlinker -x -o mod_bcg729.so mod_bcg729.o $(LDFLAGS)
+	$(CC) $(CFLAGS) $(INCLUDES) -shared -Xlinker -x -o mod_bcg729.so mod_bcg729.o $(LDFLAGS) $(MOD_LDFLAGS)
 
 mod_bcg729.o: bcg729 mod_bcg729.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c mod_bcg729.c
